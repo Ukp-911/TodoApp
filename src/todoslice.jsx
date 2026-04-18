@@ -15,10 +15,10 @@ const todoslice = createSlice({
             delete state.value[action.payload]
         },
         updatetask:(state,action)=>{
-            
+            state.value[action.payload.updkey]=action.payload.updtask
         }
     }
 })
 
-export const { addtask, deltask } = todoslice.actions
+export const { addtask, deltask, updatetask } = todoslice.actions
 export default todoslice

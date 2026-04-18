@@ -1,7 +1,7 @@
 import './App.css'
 import Dustbin from './assets/dudstbin.jsx'
 import { useSelector, useDispatch } from 'react-redux'
-import { addtask, deltask } from './todoslice.jsx'
+import { addtask, deltask, updatetask } from './todoslice.jsx'
 import { useState } from 'react'
 import Uptd from "./assets/updatetask.jsx"
 import Upd from './assets/updtinp.jsx'
@@ -10,6 +10,9 @@ const App = () => {
 	const work = useSelector((state) => state.todo.value)
 	const dispatch = useDispatch()
 	const [task, settask] = useState("")
+	const [show, setshow] = useState(false)
+	const [updtask,setupdtask]=useState("")
+	const [updkey,setupdkey]=useState("")
 
 	const handleSubmit = (e) => {
 		e.preventDefault()
@@ -25,17 +28,29 @@ const App = () => {
 		dispatch(deltask(key))
 	}
 
-	const [show, setshow] = useState(true)
-
 	const handleupdtaskbtn = (e) => {
-		e.preventDefault();
+		e.preventDefault()
+		dispatch(updatetask({updkey,updtask}))
+		setupdkey("")
 		setshow(!show)
+		setupdtask("")
+	}
+
+	const changeupdtask=(e)=>{
+		setupdtask(e.target.value)
 	}
 
 	const upddick = {
-		key: show,
+		show,
 		handleupdtaskbtn,
-	};
+		changeupdtask,
+		updtask,
+	}
+
+	const handleupdatetask=(key)=>{
+		setupdkey(key)
+		setshow(true)
+	}
 
 	return (
 		<div className='container'>
@@ -45,13 +60,11 @@ const App = () => {
 				<button className='lab'>Add Task</button>
 			</form>
 			<ol>
-				{/* {Object.entries(work).map(items=>(
+				{Object.entries(work).map(items=>(
 					<li key={items[0]}>{items[1]}
+					<Uptd handletask={()=>{handleupdatetask(items[0])}}/>
 					<Dustbin delfunc={()=>{handledel(items[0])}}/></li>
-				))} */}
-				<li>flxvlfdgn<Uptd /><Dustbin /></li>
-				<li>dksfvksfk<Uptd /><Dustbin /></li>
-				<li>kbvsbbsdjb<Uptd /><Dustbin /></li>
+				))}
 			</ol>
 			<Upd upddick={upddick} />
 		</div>

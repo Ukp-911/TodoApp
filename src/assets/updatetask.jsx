@@ -1,7 +1,7 @@
 
-const Updatetask = () => {
+const Updatetask = (props) => {
 	return (
-		<button className="updt">Update</button>
+		<button onClick={props.handletask} className="updt">Update</button>
 	)
 }
 
