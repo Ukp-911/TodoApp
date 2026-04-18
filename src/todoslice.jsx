@@ -14,6 +14,9 @@ const todoslice = createSlice({
         deltask: (state, action) => {
             delete state.value[action.payload]
         },
+        updatetask:(state,action)=>{
+            
+        }
     }
 })
 

@@ -20,7 +20,7 @@ body {
 	align-items: center;
 	flex-direction: column;
 	width: 35rem;
-	height: 22rem;
+	min-height	: 22rem;
 	background-color: white;
 	border-radius: 30px;
 	color: black
@@ -64,7 +64,15 @@ ol>li {
 	padding: 4px;
 	position: relative;
 }
-ol>li>button{
+.dust{
 	position: absolute;
 	right: 10px;
+}
+.updt{
+	position: absolute;
+	padding: 2px;
+	right: 40px;
+}
+.updinp{
+	display: none;
 }
